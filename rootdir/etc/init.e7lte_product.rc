@@ -1,0 +1,78 @@
+on init
+    mkdir /mpt 0775 system system
+    wait /dev/block/platform/msm_sdcc.1/by-name/mpt
+    exec /sbin/setup_fs_static /dev/block/platform/msm_sdcc.1/by-name/mpt no_reboot
+
+on fs
+    wait /dev/block/platform/msm_sdcc.1/by-name/mpt
+    exec /system/bin/e2fsck -y /dev/block/platform/msm_sdcc.1/by-name/mpt
+    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/mpt /mpt nodev barrier=1 noauto_da_alloc
+
+on post-fs-data
+    mkdir /data/tombstones 0771 system system
+    mkdir /tombstones/modem 0771 system system
+
+    chown system system /mpt
+    chmod 0775 /mpt
+
+# LGE_CHANGE_S, for CIQ HW12, SS1D
+    chmod 0440 /proc/cmdline
+    chown system system /proc/cmdline
+# LGE_CHANGE_E, for CIQ HW12, SS1D
+
+# [LGE_VPN][encryption-vpn@lge.com] Inside Secure VPN Kernel Module install [START]
+service vpnclientpm /system/bin/vpnclientpm3 \
+-O /data/data/com.ipsec.service/vpnclientpm.txt \
+-U rmnet0,rmnet_usb0,wlan0,bt-pan,rndis0,p2p0,eth0
+socket vpnclientpm seqpacket 0666
+# uid dropped to system when capabilities are set
+class main
+group system net_admin net_raw
+disabled
+# [LGE_VPN][encryption-vpn@lge.com] Inside Secure VPN Service & modules permission change [END]
+
+
+service ufips /system/bin/ufips
+    class core
+    user system
+    group system
+
+on boot
+# set eMMC size property
+#on property:persist.sys.emmc_size=0
+        start set_emmc_size
+on property:persist.sys.emmc_size=16GB
+        setprop ro.device.memory.system 0
+        setprop ro.device.memory.internal 16
+on property:persist.sys.emmc_size=8GB
+        setprop ro.device.memory.system 0
+        setprop ro.device.memory.internal 8
+
+# set_emmc_size
+service set_emmc_size /system/bin/sh /set_emmc_size.sh
+   class main
+   user root
+   group media_rw system sdcard_rw
+   disabled
+   oneshot
+
+# LGE_UPDATE_START, CAPP_POSTINSTALL_MODIFIED
+service postinstaller /system/vendor/bin/postinstaller.sh
+    disabled
+    oneshot
+
+on property:vold.post_fs_data_done=1
+    start postinstaller
+# LGE_UPDATE_END, CAPP_POSTINSTALL_MODIFIED
+
+# 2014.02.11 [changik.jeong@lge.com] LGIMS ipsec solution [START]
+service ipsecclient /system/bin/ipsecclient
+  class main
+  group system net_admin net_raw
+  disabled
+
+service ipsecstarter /system/bin/ipsecstarter
+  class main
+  user system
+  group system net_admin net_raw
+# 2014.02.11 [changik.jeong@lge.com] LGIMS ipsec solution [END]

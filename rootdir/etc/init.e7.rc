@@ -1,0 +1,289 @@
+import /init.zetaw.rc
+import /init.e7lte.usb.rc
+import /init.e7lte_product.rc
+
+on early-init
+    mkdir /firmware 0771 system system
+    symlink /data/tombstones /tombstones
+
+# Begin Immersion changes
+    export VIBE_PIPE_PATH /dev/pipes
+    mkdir /dev/pipes 0771 shell shell
+# End Immersion changes
+
+on init
+    # LGE_CHANGE For USB Storage (USB OTG)
+    mkdir /mnt/media_rw/USBstorage1 0700 media_rw media_rw
+    mkdir /mnt/media_rw/USBstorage2 0700 media_rw media_rw
+    mkdir /mnt/media_rw/USBstorage3 0700 media_rw media_rw
+    mkdir /mnt/media_rw/USBstorage4 0700 media_rw media_rw
+    mkdir /mnt/media_rw/USBstorage5 0700 media_rw media_rw
+    mkdir /mnt/media_rw/USBstorage6 0700 media_rw media_rw
+
+    export EXTERNAL_ADD_USB_STORAGE1 /storage/USBstorage1
+    export EXTERNAL_ADD_USB_STORAGE2 /storage/USBstorage2
+    export EXTERNAL_ADD_USB_STORAGE3 /storage/USBstorage3
+    export EXTERNAL_ADD_USB_STORAGE4 /storage/USBstorage4
+    export EXTERNAL_ADD_USB_STORAGE5 /storage/USBstorage5
+    export EXTERNAL_ADD_USB_STORAGE6 /storage/USBstorage6
+
+    mkdir /storage/USBstorage1 0700 root root
+    mkdir /storage/USBstorage2 0700 root root
+    mkdir /storage/USBstorage3 0700 root root
+    mkdir /storage/USBstorage4 0700 root root
+    mkdir /storage/USBstorage5 0700 root root
+    mkdir /storage/USBstorage6 0700 root root
+
+on fs
+    mount_all fstab.e7lte
+
+    # Executing tune2fs to reserve some region in /data. (40MB)
+    exec /system/bin/tune2fs -u system -r 10240 /dev/block/platform/msm_sdcc.1/by-name/userdata
+
+    # Keeping following partitions outside fstab file. As user may not have
+    # these partition flashed on the device. Failure to mount any partition in fstab file
+    # results in failure to launch late-start class.
+
+    wait /dev/block/platform/msm_sdcc.1/by-name/modem
+    mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
+
+# In order to keep plenty of large order chunks.
+    write /proc/sys/vm/min_free_kbytes 5120
+
+# import cne init file
+#on post-fs
+#ys.seong@lge.com 2013.06.30 diganostic mode for recovey
+#     write /sys/class/android_usb/android0/enable 0
+#	     restart adbd
+#		     write /sys/class/android_usb/android0/enable 1
+
+#    export LD_PRELOAD /vendor/lib/libNimsWrap.so
+#// LGE_UPDATE_S DMS_SYSTEM_GOTA dms-fota@lge.com 2012/11/09
+     start recovery_write
+#// LGE_UPDATE_E DMS_SYSTEM_GOTA dms-fota@lge.com 2012/11/09
+
+on post-fs-data
+    mkdir /data/tombstones 0771 system system
+    mkdir /tombstones/modem 0771 system system
+
+    setprop vold.post_fs_data_done 1
+
+on early-boot
+
+on boot
+    start imsqmidaemon
+    insmod /system/lib/modules/adsprpc.ko
+#insmod exfat filesystem module by WX-BSP-FileSys@lge.com
+    insmod /system/lib/modules/texfat.ko
+
+# LGE_CHANGE_S, changed owner for antibanding, 2014-04-11, youngwook.song@lge.com
+	chown media media /sys/bus/platform/devices/cam_sensor_vt/antibanding
+	chmod 644 /sys/bus/platform/devices/cam_sensor_vt/antibanding
+# LGE_CHANGE_E, changed owner for antibanding, 2014-04-11, youngwook.song@lge.com
+
+#touch
+   chmod 664 /sys/devices/virtual/input/lge_touch/touch_gesture
+   chown system system /sys/devices/virtual/input/lge_touch/touch_gesture
+   chmod 664 /sys/devices/virtual/input/lge_touch/knock_on_type
+   chown system system /sys/devices/virtual/input/lge_touch/knock_on_type
+   chmod 664 /sys/devices/virtual/input/lge_touch/global_access_pixel
+   chown system system /sys/devices/virtual/input/lge_touch/global_access_pixel
+   chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
+   chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
+   chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
+   chown system system /sys/devices/virtual/input/lge_touch/lpwg_notify
+   chmod 664 /sys/devices/virtual/input/lge_touch/lockscreen
+   chown system system /sys/devices/virtual/input/lge_touch/lockscreen
+   chmod 664 /sys/devices/virtual/input/lge_touch/ime_status
+   chown system system /sys/devices/virtual/input/lge_touch/ime_status
+   chmod 664 /sys/devices/virtual/input/lge_touch/object_ctrl
+   chown system system /sys/devices/virtual/input/lge_touch/object_ctrl
+
+#start camera server as daemon
+service qcamerasvr /system/bin/mm-qcamera-daemon
+    class late_start
+    user camera
+    group camera system inet input graphics
+
+#LGE_CHANGE_S, restart qcamerasvr when restarting mediaserver and servicemanager, yousung.kang@lge.com
+on property:init.svc.media=restarting
+    restart qcamerasvr
+on property:init.svc.servicemanager=restarting
+    restart qcamerasvr
+#LGE_CHANGE_E, restart qcamerasvr when restarting mediaserver and servicemanager, yousung.kang@lge.com
+
+
+# Allow usb charging to be disabled persistently
+on property:persist.usb.chgdisabled=1
+   write /sys/class/power_supply/battery/charging_enabled 0
+
+on property:persist.usb.chgdisabled=0
+   write /sys/class/power_supply/battery/charging_enabled 1
+
+# Allow usb charging to be disabled persistently
+on property:persist.usb.chgdisabled=1
+   write /sys/class/power_supply/battery/charging_enabled 0
+
+on property:persist.usb.chgdisabled=0
+   write /sys/class/power_supply/battery/charging_enabled 1
+
+on property:persist.service.fakebatt=1
+    write /sys/class/power_supply/battery/pseudo_batt "1 1 100 40 4100 80 1"
+
+on property:persist.service.fakebatt=0
+    write /sys/class/power_supply/battery/pseudo_batt "0 1 100 40 4100 80 1"
+
+service time_daemon /system/bin/time_daemon
+   class late_start
+   user root
+   group root
+
+service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+   user root
+   disabled
+
+#start GNSS/Sensor interface daemon
+service gsiff_daemon /system/bin/gsiff_daemon
+   class late_start
+   user system
+   group gps net_raw
+
+service thermal-engine /system/bin/thermal-engine
+   class main
+   user root
+   group root
+
+# Begin Immersion changes
+service immvibed /system/bin/immvibed
+    class main
+    user shell
+    group shell system
+    oneshot
+# End Immersion changes
+
+service qrngd /system/bin/qrngd -f
+   class main
+   user root
+   group root
+
+service qrngp /system/bin/qrngp
+    class main
+    user root
+    group root
+    oneshot
+    disabled
+
+on property:sys.boot_completed=1
+    start qrngp
+
+service audiod /system/bin/audiod
+   class late_start
+   user system
+   group system
+
+on boot
+    start imsqmidaemon
+    insmod /system/lib/modules/adsprpc.ko
+    chown system system /sys/class/power_supply/battery/pseudo_batt
+service adsprpcd /system/bin/adsprpcd
+   class main
+   user media
+   group media
+
+service rctd /system/bin/rctd
+   class late_start
+   user root
+   group root
+service imsqmidaemon /system/bin/imsqmidaemon
+    class main
+    user system
+    group radio net_raw log qcom_diag
+    disabled
+
+# imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
+service imsdatadaemon /system/bin/imsdatadaemon
+    class main
+    user root
+    group system wifi radio net_raw log qcom_diag net_admin
+    disabled
+
+on property:sys.ims.QMI_DAEMON_STATUS=1
+    start imsdatadaemon
+
+service ims_rtp_daemon /system/bin/ims_rtp_daemon
+   class main
+   user system
+   group radio net_raw diag qcom_diag log
+   disabled
+
+on property:sys.ims.DATA_DAEMON_STATUS=1
+    start ims_rtp_daemon
+
+service wcnss-service /system/bin/wcnss_service
+   class late_start
+   user system
+   group system wifi
+   oneshot
+
+#LGE_UPDATE_S LGE_PM_SMPL_COUNT
+service smpl_count /system/bin/smpl_count
+    class main
+	user root
+	oneshot
+#LGE_UPDATE_E LGE_PM_SMPL_COUNT
+
+# LGBACKUP SystemService Daemon
+service bnrd /system/bin/bnrd
+      class main
+      socket bnrd stream 660 root system
+      user root
+      group system radio sdcard_rw
+#GOTA_UA
+#// LGE_UPDATE_S DMS_SYSTEM_GOTA dms-fota@lge.com 2012/11/09
+service recovery_write /sbin/write_recovery
+    class main
+    oneshot
+#// LGE_UPDATE_S DMS_SYSTEM_GOTA dms-fota@lge.com 2012/11/09
+
+#/* 2013-06-24, juhyup.kim@lge.com LGP_DATA_APN_BACKUP [START] */
+  mkdir /persist-lg/lgdata 0771 radio radio
+#/* 2013-06-24, juhyup.kim@lge.com LGP_DATA_APN_BACKUP [END] */
+# LGE_CHANGE_S, G2-FS@lge.com, 2013-11-17, fuse for USBStorage
+service fuse_USBstorage1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage1 /storage/USBstorage1
+    class late_start
+    disabled
+
+service fuse_USBstorage2 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage2 /storage/USBstorage2
+    class late_start
+    disabled
+
+service fuse_USBstorage3 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage3 /storage/USBstorage3
+    class late_start
+    disabled
+
+service fuse_USBstorage4 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage4 /storage/USBstorage4
+    class late_start
+    disabled
+
+service fuse_USBstorage5 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage5 /storage/USBstorage5
+    class late_start
+    disabled
+
+service fuse_USBstorage6 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage6 /storage/USBstorage6
+    class late_start
+    disabled
+# LGE_CHANGE_E, G2-FS@lge.com, 2013-11-17, fuse for USBStorage
+
+# Capacitive Sensor
+service capsensord /system/bin/capsensord
+    class late_start
+    user root
+    group root net_raw
+    disabled
+    oneshot
+
+on property:persist.service.cap_keeponoff=on
+    start capsensord
+
+#on property:persist.service.cap_keeponoff=off
+#    stop capsensord
