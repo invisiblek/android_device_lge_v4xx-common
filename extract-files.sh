@@ -47,12 +47,14 @@ else
 fi
 
 BASE=../../../vendor/$VENDOR/v4xx-common/proprietary
-rm -rf $BASE/*
+rm -rf ../../../vendor/$VENDOR/v4xx-common
 
 DEVBASE=../../../vendor/$VENDOR/$DEVICE/proprietary
-rm -rf $DEVBASE/*
+rm -rf ../../../vendor/$VENDOR/$DEVICE
 
 extract ../../$VENDOR/v4xx-common/proprietary-files.txt $BASE
-extract ../../$VENDOR/$DEVICE/proprietary-files.txt $DEVBASE
+if [ -s ../../$VENDOR/$DEVICE/proprietary-files.txt ]; then
+  extract ../../$VENDOR/$DEVICE/proprietary-files.txt $DEVBASE
+fi
 
 ./setup-makefiles.sh
