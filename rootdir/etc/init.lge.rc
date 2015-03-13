@@ -64,9 +64,6 @@ on post-fs-data
     #LGMDM [a1-mdm-dev@lge.com][ID-MDM-77][ID-MDM-289]
     mkdir /data/system/lgmdm 0700 system system
 
-    #SELinux
-    mkdir /data/misc/audit 00750 system system
-
 #SELinux
 service auditd /system/bin/auditd -k
     class main
