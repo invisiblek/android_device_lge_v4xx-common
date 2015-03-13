@@ -14,30 +14,10 @@ on early-init
 # End Immersion changes
 
 on init
-    # LGE_CHANGE For USB Storage (USB OTG)
-    mkdir /mnt/media_rw/USBstorage1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBstorage2 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBstorage3 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBstorage4 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBstorage5 0700 media_rw media_rw
-    mkdir /mnt/media_rw/USBstorage6 0700 media_rw media_rw
-
-    export EXTERNAL_ADD_USB_STORAGE1 /storage/USBstorage1
-    export EXTERNAL_ADD_USB_STORAGE2 /storage/USBstorage2
-    export EXTERNAL_ADD_USB_STORAGE3 /storage/USBstorage3
-    export EXTERNAL_ADD_USB_STORAGE4 /storage/USBstorage4
-    export EXTERNAL_ADD_USB_STORAGE5 /storage/USBstorage5
-    export EXTERNAL_ADD_USB_STORAGE6 /storage/USBstorage6
-
-    mkdir /storage/USBstorage1 0700 root root
-    mkdir /storage/USBstorage2 0700 root root
-    mkdir /storage/USBstorage3 0700 root root
-    mkdir /storage/USBstorage4 0700 root root
-    mkdir /storage/USBstorage5 0700 root root
-    mkdir /storage/USBstorage6 0700 root root
 
 on fs
     mount_all fstab.e7
+    setprop ro.crypto.fuse_sdcard true
 
     # Executing tune2fs to reserve some region in /data. (40MB)
     exec /system/bin/tune2fs -u system -r 10240 /dev/block/platform/msm_sdcc.1/by-name/userdata
@@ -250,31 +230,6 @@ service recovery_write /sbin/write_recovery
 #/* 2013-06-24, juhyup.kim@lge.com LGP_DATA_APN_BACKUP [START] */
   mkdir /persist-lg/lgdata 0771 radio radio
 #/* 2013-06-24, juhyup.kim@lge.com LGP_DATA_APN_BACKUP [END] */
-# LGE_CHANGE_S, G2-FS@lge.com, 2013-11-17, fuse for USBStorage
-service fuse_USBstorage1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage1 /storage/USBstorage1
-    class late_start
-    disabled
-
-service fuse_USBstorage2 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage2 /storage/USBstorage2
-    class late_start
-    disabled
-
-service fuse_USBstorage3 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage3 /storage/USBstorage3
-    class late_start
-    disabled
-
-service fuse_USBstorage4 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage4 /storage/USBstorage4
-    class late_start
-    disabled
-
-service fuse_USBstorage5 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage5 /storage/USBstorage5
-    class late_start
-    disabled
-
-service fuse_USBstorage6 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/USBstorage6 /storage/USBstorage6
-    class late_start
-    disabled
-# LGE_CHANGE_E, G2-FS@lge.com, 2013-11-17, fuse for USBStorage
 
 # Capacitive Sensor
 service capsensord /system/bin/capsensord
