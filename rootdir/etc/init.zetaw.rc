@@ -42,29 +42,26 @@ on init
     mkdir /persist 0771 system system
     mkdir /persist-lg 0771 system system
     mkdir /sns 0775 system system
-    mkdir /storage 0751 system sdcard_r
-    mkdir /storage/external_SD 0700 root root
-    mkdir /mnt/media_rw 0700 media_rw media_rw
-    mkdir /mnt/media_rw/external_SD 0700 media_rw media_rw
+
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
-    # Palman ok
-    mkdir /storage/emulated/legacy 0555 root root
-    # Palman nok so extermination!!
 
+    mkdir /storage/sdcard1 0700 root root
+    mkdir /storage/usbdisk0 0700 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
-    export EXTERNAL_ADD_STORAGE /storage/external_SD
-    export SECONDARY_STORAGE /storage/external_SD
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
+    export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk0
 
     # Support legacy paths
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    symlink /storage/sdcard1 /external_sd
+    symlink /storage/sdcard1 /mnt/external_sd
 
     # LGE_UPDATE_START, 2013/5/8, G2-FS@lge.com
     wait /dev/block/platform/msm_sdcc.1/by-name/userdata
@@ -486,12 +483,14 @@ service ril-qmi /system/bin/sh /init.zetaw.ril.sh
 
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
-    
-# LGE_CHANGE_S, G2-FS@lge.com, 2013-10-30, fuse for external_SD
-service fuse_external_SD /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/external_SD /storage/external_SD
+
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
-# LGE_CHANGE_E, G2-FS@lge.com, 2013-10-30, fuse for external_SD    
+
+service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/usbdisk0 /storage/usbdisk0
+    class late_start
+    disabled
 
 on property:vold.decrypt=trigger_restart_framework
     start sensors
@@ -914,10 +913,6 @@ service profiler_daemon /system/bin/profiler_daemon
     user root
     group root
     disabled
-
-#service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-#    class late_start
-
 
 # Binding fuse mount point to /storage/emulated/legacy
 # Palman nok so extermination!!!
