@@ -200,7 +200,7 @@ PRODUCT_PACKAGES += \
     init.zetaw.syspart_fixup.sh \
     init.zetaw.usb.rc \
     init.zetaw.usb.sh \
-    ueventd.e7lte.rc
+    ueventd.e7.rc
 
 # Thermal
 PRODUCT_COPY_FILES += \
