@@ -1,16 +1,6 @@
-# Time services
-# app/TimeService.apk
-# bin/time_daemon
-# vendor/lib/libtime_genoff.so
-# vendor/lib/libTimeService.so
-
-# Widevine driver
-# vendor/firmware/widevine.b01
-# vendor/firmware/widevine.b02
-# vendor/firmware/widevine.b03
-# vendor/firmware/widevine.mdt
-
 # Audio
+bin/adsprpcd
+bin/fm_qsoc_patches
 etc/ACDB/Bluetooth_cal.acdb
 etc/ACDB/General_cal.acdb
 etc/ACDB/Global_cal.acdb
@@ -19,86 +9,29 @@ etc/ACDB/Hdmi_cal.acdb
 etc/ACDB/Headset_cal.acdb
 etc/ACDB/Speaker_cal.acdb
 etc/ACDB/workspaceFile.qwsp
-vendor/lib/libadiertac.so
-vendor/lib/libacdbrtac.so
-vendor/lib/libaudcal.so
-vendor/lib/libaudioalsa.so
-vendor/lib/libacdbmapper.so
-vendor/lib/libacdbloader.so
 lib/libtinyalsa.so
 lib/libtinycompress.so
-lib/hw/audio.primary.msm8226.so
-bin/fm_qsoc_patches
-
-# Listen service
+vendor/lib/libacdbloader.so
+vendor/lib/libacdbmapper.so
+vendor/lib/libacdbrtac.so
+vendor/lib/libadiertac.so
+vendor/lib/libadsprpc.so
+vendor/lib/libaudcal.so
+vendor/lib/libaudioalsa.so
+vendor/lib/libfastcvadsp_stub.so
+vendor/lib/libfastcvopt.so
+vendor/lib/liblisten.so
 vendor/lib/liblistenhardware.so
 vendor/lib/liblistenjni.so
-vendor/lib/liblisten.so
 vendor/lib/liblistensoundmodel.so
-
-# Ril
-vendor/lib/libril-qc-qmi-1.so
-vendor/lib/libril-qcril-hook-oem.so
-vendor/lib/libdsutils.so
-vendor/lib/libdiag.so
-vendor/lib/libqmi.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmiservices.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libdsi_netctrl.so
-vendor/lib/libqdi.so
-vendor/lib/libnetmgr.so
-vendor/lib/libdsnetutils.so
-vendor/lib/libqdp.so
-lib/libvss_common_iface.so
-lib/libvss_common_idl.so
-lib/libvss_nv_iface.so
-lib/libvss_nv_idl.so
-lib/libvss_common_core.so
-lib/libvss_nv_core.so
-lib/libril.so
-bin/qmuxd
-bin/rild
-bin/rmt_storage
-bin/netmgrd
-# ????
-vendor/lib/libconfigdb.so
-vendor/lib/libdsucsd.so
-vendor/lib/libqmi_csvt_srvc.so
-
-# EGL
-vendor/lib/egl/eglsubAndroid.so
-vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libEGL_adreno.so
-vendor/lib/libscale.so
-vendor/lib/libsc-a3xx.so
-vendor/lib/librs_adreno_sha1.so
-vendor/lib/librs_adreno.so
-vendor/lib/libllvm-qcom.so
-vendor/lib/libgsl.so
-vendor/lib/libc2d30.so
-vendor/lib/libc2d30-a3xx.so
-vendor/lib/libadreno_utils.so
-vendor/lib/libRSDriver_adreno.so
-vendor/lib/libOpenVG.so
-vendor/lib/libOpenCL.so
-vendor/lib/libCB.so
-vendor/lib/libC2D2.so
-
-# Media
-vendor/lib/libwvm.so
-
+vendor/lib/rfsa/adsp/libadsp_denoise_skel.so
+vendor/lib/rfsa/adsp/libdspCV_skel.so
+vendor/lib/rfsa/adsp/libfastcvadsp.so
+vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.msm8226.so
+lib/hw/camera.vendor.msm8226.so
 lib/libchromatix_hi543_common.so
 lib/libchromatix_hi543_default_video.so
 lib/libchromatix_hi543_preview.so
@@ -114,109 +47,96 @@ lib/libchromatix_imx179_common.so
 lib/libchromatix_imx179_default_video.so
 lib/libchromatix_imx179_preview.so
 lib/libchromatix_imx179_snapshot.so
-lib/libmmcamera_hi707.so
+lib/libmm-qcamera.so
 lib/libmmcamera_hi543.so
+lib/libmmcamera_hi707.so
 lib/libmmcamera_imx111.so
 lib/libmmcamera_imx119.so
 lib/libmmcamera_imx179.so
 lib/libmmcamera_interface.so
+lib/libmmjpeg_interface.so
 lib/libmorpho_memory_allocator.so
 lib/libmorpho_panorama_gp.so
-lib/libmmjpeg_interface.so
-lib/libmm-qcamera.so
-vendor/lib/liboemcamera.so
-vendor/lib/libmmcamera2_stats_modules.so
-vendor/lib/libmmcamera2_stats_algorithm.so
-vendor/lib/libmmcamera2_iface_modules.so
-vendor/lib/libmmcamera2_isp_modules.so
-vendor/lib/libmmcamera2_sensor_modules.so
-vendor/lib/libmmcamera2_pproc_modules.so
-vendor/lib/libmmcamera2_cpp_module.so
+vendor/lib/libjpegdhw.so
+vendor/lib/libjpegehw.so
+vendor/lib/libmm-hdcpmgr.so
 vendor/lib/libmmcamera2_c2d_module.so
+vendor/lib/libmmcamera2_cpp_module.so
+vendor/lib/libmmcamera2_iface_modules.so
 vendor/lib/libmmcamera2_imglib_modules.so
-vendor/lib/libmmcamera2_wnr_module.so
+vendor/lib/libmmcamera2_isp_modules.so
+vendor/lib/libmmcamera2_pproc_modules.so
+vendor/lib/libmmcamera2_sensor_modules.so
+vendor/lib/libmmcamera2_stats_algorithm.so
+vendor/lib/libmmcamera2_stats_modules.so
 vendor/lib/libmmcamera2_vpe_module.so
-vendor/lib/libmmcamera_imglib.so
+vendor/lib/libmmcamera2_wnr_module.so
 vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_hdr_lib.so
-vendor/lib/libmmcamera_wavelet_lib.so
-vendor/lib/libmmcamera_tintless_algo.so
-vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_hi351.so
 vendor/lib/libmmcamera_hi543_eeprom.so
+vendor/lib/libmmcamera_imglib.so
 vendor/lib/libmmcamera_imx111_eeprom.so
 vendor/lib/libmmcamera_imx179_eeprom.so
-
 vendor/lib/libmmcamera_mt9m114.so
+vendor/lib/libmmcamera_tintless_algo.so
+vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_tuning.so
+vendor/lib/libmmcamera_wavelet_lib.so
 vendor/lib/libmmjpeg.so
-vendor/lib/libjpegdhw.so
-vendor/lib/libjpegehw.so
+vendor/lib/libmmqjpeg_codec.so
+vendor/lib/libmorpho_image_stab31.so
+vendor/lib/libmorpho_noise_reduction.so
+vendor/lib/liboemcamera.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
-vendor/lib/libmmqjpeg_codec.so
-vendor/lib/libmm-hdcpmgr.so
 
-# Media
-lib/libqomx_core.so
-lib/libdashplayer.so
-vendor/lib/libmmipstreamaal.so
-vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxAmrwbplusDec.so
-vendor/lib/libOmxEvrcDec.so
-vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libOmxWmaDec.so
-
-# Adsp
-bin/adsprpcd
-vendor/lib/libadsprpc.so
-vendor/lib/libfastcvopt.so
-vendor/lib/libfastcvadsp_stub.so
-vendor/lib/rfsa/adsp/libadsp_denoise_skel.so
-vendor/lib/rfsa/adsp/libdspCV_skel.so
-vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
-vendor/lib/rfsa/adsp/libfastcvadsp.so
-
-# Thermal daemon
-bin/thermal-engine
-vendor/lib/libthermalioctl.so
-vendor/lib/libthermalclient.so
+# DRM
+# vendor/firmware/widevine.b01
+# vendor/firmware/widevine.b02
+# vendor/firmware/widevine.b03
+# vendor/firmware/widevine.mdt
+vendor/lib/libQSEEComAPI.so
+vendor/lib/libwvm.so
 
 # Gps
 lib/hw/gps.default.so
-lib/libloc_core.so
-lib/libloc_eng.so
-lib/libloc_api_v02.so
-lib/libloc_ds_api.so
 lib/libgps.utils.so
-vendor/lib/libquipc_os_api.so
-vendor/lib/liblocationservice.so
-vendor/lib/libulp2.so
+lib/libloc_api_v02.so
+lib/libloc_core.so
+lib/libloc_ds_api.so
+lib/libloc_eng.so
+vendor/lib/libNimsWrap.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
+vendor/lib/liblocationservice.so
+vendor/lib/libquipc_os_api.so
+vendor/lib/libulp2.so
 
-# Sensors
-vendor/lib/hw/sensors.msm8226.so
-vendor/lib/libsensor1.so
-vendor/lib/libsensor_reg.so
-bin/sensors.qcom
-lib/hw/lights.msm8226.so
-vendor/lib/libbmc050.so
-
-# Other
-vendor/lib/libQSEEComAPI.so
-bin/mm-pp-daemon
-vendor/lib/libmm-abl-oem.so
-vendor/lib/libmm-abl.so
-bin/ims_rtp_daemon
-vendor/lib/lib-imsdpl.so
-vendor/lib/lib-rtpsl.so
-vendor/lib/lib-rtpcore.so
-vendor/lib/lib-rtpdaemoninterface.so
-vendor/lib/lib-rtpcommon.so
-vendor/lib/lib-dplmedia.so
+# Graphics
+etc/firmware/a330_pfp.fw
+etc/firmware/a330_pm4.fw
+vendor/lib/egl/eglsubAndroid.so
+vendor/lib/egl/libEGL_adreno.so
+vendor/lib/egl/libGLESv1_CM_adreno.so
+vendor/lib/egl/libGLESv2_adreno.so
+vendor/lib/egl/libq3dtools_adreno.so
+vendor/lib/libC2D2.so
+vendor/lib/libCB.so
+vendor/lib/libOpenCL.so
+vendor/lib/libOpenVG.so
+vendor/lib/libRSDriver_adreno.so
+vendor/lib/libadreno_utils.so
+vendor/lib/libc2d30-a3xx.so
+vendor/lib/libc2d30.so
+vendor/lib/libgsl.so
+vendor/lib/libllvm-qcom.so
+vendor/lib/librs_adreno.so
+vendor/lib/librs_adreno_sha1.so
+vendor/lib/libsc-a3xx.so
+vendor/lib/libscale.so
 
 # IRDA
 bin/irrcServer
@@ -224,3 +144,80 @@ lib/libirrc.so
 lib/libirrcClient.so
 lib/libirrcJni.so
 lib/liblgewg.so
+
+# Media
+vendor/lib/libmmipstreamaal.so
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxAmrwbplusDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
+vendor/lib/libOmxWmaDec.so
+
+# Postprocessing
+bin/mm-pp-daemon
+vendor/lib/libmm-abl-oem.so
+vendor/lib/libmm-abl.so
+
+# Perf
+vendor/lib/libqc-opt.so
+
+# Ril
+bin/ims_rtp_daemon
+bin/netmgrd
+bin/qmuxd
+bin/rild
+bin/rmt_storage
+lib/libril.so
+lib/libvss_common_core.so
+lib/libvss_common_idl.so
+lib/libvss_common_iface.so
+lib/libvss_nv_core.so
+lib/libvss_nv_idl.so
+lib/libvss_nv_iface.so
+vendor/lib/lib-dplmedia.so
+vendor/lib/lib-imsdpl.so
+vendor/lib/lib-rtpcommon.so
+vendor/lib/lib-rtpcore.so
+vendor/lib/lib-rtpdaemoninterface.so
+vendor/lib/lib-rtpsl.so
+vendor/lib/libconfigdb.so
+vendor/lib/libdiag.so
+vendor/lib/libdsi_netctrl.so
+vendor/lib/libdsnetutils.so
+vendor/lib/libdsucsd.so
+vendor/lib/libdsutils.so
+vendor/lib/libidl.so
+vendor/lib/libnetmgr.so
+vendor/lib/libqcci_legacy.so
+vendor/lib/libqdi.so
+vendor/lib/libqdp.so
+vendor/lib/libqmi.so
+vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_client_qmux.so
+vendor/lib/libqmi_common_so.so
+vendor/lib/libqmi_csi.so
+vendor/lib/libqmi_csvt_srvc.so
+vendor/lib/libqmi_encdec.so
+vendor/lib/libqmiservices.so
+vendor/lib/libril-qc-qmi-1.so
+vendor/lib/libril-qcril-hook-oem.so
+
+# Sensors
+bin/irsc_util
+bin/sensors.qcom
+lib/hw/lights.msm8226.so
+vendor/lib/hw/sensors.msm8226.so
+vendor/lib/libbmc050.so
+vendor/lib/libsensor1.so
+vendor/lib/libsensor_reg.so
+
+# Thermal daemon
+bin/thermal-engine
+vendor/lib/libthermalclient.so
+vendor/lib/libthermalioctl.so
+
+# Time services
+# app/TimeService.apk
+# bin/time_daemon
+# vendor/lib/libTimeService.so
+# vendor/lib/libtime_genoff.so
