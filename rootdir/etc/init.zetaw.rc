@@ -27,7 +27,7 @@
 
 import init.zetaw.usb.rc
 import init.lge.log.rc
-import init.lge.svelte.rc
+#import init.lge.svelte.rc
 #LG_UPDATE_START :  move to init.zetaw.bt_vendor.rc to seperate vendor's resource 20140106, [START]
 import init.zetaw.bt_vendor.rc
 #LG_UPDATE_END :  20140106, [END]

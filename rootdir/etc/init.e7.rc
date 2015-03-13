@@ -1,6 +1,8 @@
 import /init.zetaw.rc
 import /init.e7lte.usb.rc
 import /init.e7lte_product.rc
+import /init.lge.early.rc
+import /init.lge.rc
 
 on early-init
     mkdir /firmware 0771 system system

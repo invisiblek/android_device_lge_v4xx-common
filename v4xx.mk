@@ -188,14 +188,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fstab.e7 \
     init.e7.rc \
-    init.e7.usb.rc \
+    init.e7lte.usb.rc \
+    init.lge.rc \
+    init.lge.early.rc \
+    init.zetaw.bt_vendor.rc \
     init.zetaw.class_core.sh \
     init.zetaw.early_boot.sh \
     init.zetaw-sensor.sh \
+    init.zetaw.rc \
     init.zetaw.sh \
     init.zetaw.syspart_fixup.sh \
+    init.zetaw.usb.rc \
     init.zetaw.usb.sh \
-    ueventd.e7.rc
+    ueventd.e7lte.rc
 
 # Thermal
 PRODUCT_COPY_FILES += \
