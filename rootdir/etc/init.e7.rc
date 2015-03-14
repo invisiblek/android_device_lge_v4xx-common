@@ -1,6 +1,4 @@
 import /init.zetaw.rc
-import /init.e7lte.usb.rc
-import /init.e7lte_product.rc
 import /init.lge.early.rc
 import /init.lge.rc
 
@@ -225,15 +223,6 @@ service bnrd /system/bin/bnrd
       user root
       group system radio sdcard_rw
 #GOTA_UA
-#// LGE_UPDATE_S DMS_SYSTEM_GOTA dms-fota@lge.com 2012/11/09
-service recovery_write /sbin/write_recovery
-    class main
-    oneshot
-#// LGE_UPDATE_S DMS_SYSTEM_GOTA dms-fota@lge.com 2012/11/09
-
-#/* 2013-06-24, juhyup.kim@lge.com LGP_DATA_APN_BACKUP [START] */
-  mkdir /persist-lg/lgdata 0771 radio radio
-#/* 2013-06-24, juhyup.kim@lge.com LGP_DATA_APN_BACKUP [END] */
 
 # Capacitive Sensor
 service capsensord /system/bin/capsensord
