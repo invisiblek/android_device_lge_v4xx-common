@@ -80,6 +80,9 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
+# Include
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
