@@ -1245,7 +1245,6 @@ service irrcServer /system/bin/irrcServer
    class main
    user media
    group media
-   onrestart restart irrcServer
 
 service ssbd /system/bin/ssbd
     class main
