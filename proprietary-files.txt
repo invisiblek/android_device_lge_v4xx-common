@@ -165,6 +165,7 @@ vendor/lib/libqc-opt.so
 # Ril
 bin/ims_rtp_daemon
 bin/netmgrd
+bin/qmiproxy
 bin/qmuxd
 bin/rild
 bin/rmt_storage

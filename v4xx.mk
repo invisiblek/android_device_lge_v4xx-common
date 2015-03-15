@@ -187,6 +187,7 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.e7 \
+    init.class_main.sh \
     init.e7.rc \
     init.e7lte.usb.rc \
     init.lge.rc \
