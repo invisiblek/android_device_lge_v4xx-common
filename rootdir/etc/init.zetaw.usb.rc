@@ -45,7 +45,8 @@ on property:sys.usb.provisioned=1
 
 on charger
     stop bootlogo
-    mount_all ./fstab.e7
+    mount_all fstab.e7
+    start adbd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 1004
     write /sys/class/android_usb/android0/idProduct 6300
