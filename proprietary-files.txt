@@ -160,6 +160,7 @@ vendor/lib/libmm-abl-oem.so
 vendor/lib/libmm-abl.so
 
 # Perf
+bin/mpdecision
 vendor/lib/libqc-opt.so
 
 # Ril
