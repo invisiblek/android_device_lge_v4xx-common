@@ -84,24 +84,6 @@ on fs
 on post-fs
 	start sreadahead
 	# seandroid using auditd
-	chmod 664 /sys/devices/virtual/input/lge_touch/touch_gesture
-	chown system system /sys/devices/virtual/input/lge_touch/touch_gesture
-	chmod 664 /sys/devices/virtual/input/lge_touch/knock_on_type
-	chown system system /sys/devices/virtual/input/lge_touch/knock_on_type
-	chmod 664 /sys/devices/virtual/input/lge_touch/global_access_pixel
-	chown system system /sys/devices/virtual/input/lge_touch/global_access_pixel
-	chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
-	chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
-	chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
-	chown system system /sys/devices/virtual/input/lge_touch/lpwg_notify
-	chmod 664 /sys/devices/virtual/input/lge_touch/incoming_call
-	chown system system /sys/devices/virtual/input/lge_touch/incoming_call
-	chmod 664 /sys/devices/virtual/input/lge_touch/lockscreen
-	chown system system /sys/devices/virtual/input/lge_touch/lockscreen
-	chmod 664 /sys/devices/virtual/input/lge_touch/ime_status
-	chown system system /sys/devices/virtual/input/lge_touch/ime_status
-	chmod 664 /sys/devices/virtual/input/lge_touch/keyguard
-	chown system system /sys/devices/virtual/input/lge_touch/keyguard
 
 # LGE_CHANGE_S, [LGE_DATA][LGP_DATA_TCPIP_NSRM], heeyeon.nah@lge.com, 2012-05-22
 export LD_PRELOAD /vendor/lib/libNimsWrap.so

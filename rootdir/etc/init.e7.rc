@@ -75,13 +75,17 @@ on boot
    chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
    chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
    chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
-   chown system system /sys/devices/virtual/input/lge_touch/lpwg_notify
+   chown system radio /sys/devices/virtual/input/lge_touch/lpwg_notify
+   chmod 664 /sys/devices/virtual/input/lge_touch/incoming_call
+   chown system system /sys/devices/virtual/input/lge_touch/incoming_call
    chmod 664 /sys/devices/virtual/input/lge_touch/lockscreen
    chown system system /sys/devices/virtual/input/lge_touch/lockscreen
    chmod 664 /sys/devices/virtual/input/lge_touch/ime_status
    chown system system /sys/devices/virtual/input/lge_touch/ime_status
    chmod 664 /sys/devices/virtual/input/lge_touch/object_ctrl
    chown system system /sys/devices/virtual/input/lge_touch/object_ctrl
+   chmod 664 /sys/devices/virtual/input/lge_touch/keyguard
+   chown system system /sys/devices/virtual/input/lge_touch/keyguard
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
