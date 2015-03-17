@@ -63,15 +63,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.cabl=0 \
     ro.vendor.extension_library=/vendor/lib/libqc-opt.so
 
-# Radio
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.radio.add_power_save=1 \
-    persist.radio.apm_sim_not_pwdn=1 \
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.data.netmgrd.qos.enable=false \
-    ro.use_data_netmgrd=true
-
 # Recovery
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.forbid_format=/boot,/firmware,/mpt,/persist,/persist-lg,/sns
