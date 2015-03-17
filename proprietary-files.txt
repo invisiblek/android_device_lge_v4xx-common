@@ -233,7 +233,7 @@ vendor/lib/libthermalioctl.so
 # app/TimeService.apk
 # bin/time_daemon
 # vendor/lib/libTimeService.so
-# vendor/lib/libtime_genoff.so
+vendor/lib/libtime_genoff.so
 
 # Venus firmware
 etc/firmware/venus.b00
