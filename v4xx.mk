@@ -49,6 +49,7 @@ PRODUCT_COPY_FILES += \
 
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
+PRODUCT_CHARACTERISTICS := tablet
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
