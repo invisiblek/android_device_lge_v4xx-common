@@ -92,7 +92,7 @@ export LD_PRELOAD /vendor/lib/libNimsWrap.so
 # enable chargerlogo
 on chargerlogo
    stop bootlogo
-   exec /sbin/chargerlogo
+   start charger
 #LGE_CHANGE_E
 
 on early-boot
@@ -909,7 +909,7 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
     disabled
     oneshot
 
-service charger /charger
+service charger /sbin/charger_v4xx
     class charger
 
 # Mobile DM Router
