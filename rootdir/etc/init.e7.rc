@@ -17,6 +17,9 @@ on init
 
 on fs
     mount_all fstab.e7
+    restorecon_recursive /sns
+    restorecon_recursive /persist
+    restorecon_recursive /persist-lg
 
     # Enable zRAM
     swapon_all /fstab.e7
