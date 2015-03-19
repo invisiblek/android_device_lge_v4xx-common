@@ -70,25 +70,9 @@ service shutdownanim /system/bin/shutdownanimation
     disabled
     oneshot
 
-#CAPP_NFS
-service nfsserversetup /system/bin/nfsserversetup
-    class late_start
-    user root
-    oneshot
-
 #CAPP_MPROFILER
 service lgprofd /system/bin/lgprofd
     socket lgprofd stream 666
-
-
-#Application Manager ENABLE_UNINSTALL
-service enable_uninstall  /system/vendor/bin/enable_uninstall.sh
-    disabled
-    oneshot
-
-#Application Manager ENABLE_UNINSTALL
-on property:vold.post_fs_data_done=1
-    start enable_uninstall
 
 #CAPP_LOGCATCHER
 service digicl /system/bin/digicl.sh

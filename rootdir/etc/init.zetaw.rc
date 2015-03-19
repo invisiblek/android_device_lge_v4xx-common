@@ -62,38 +62,12 @@ on init
     symlink /storage/sdcard1 /external_sd
     symlink /storage/sdcard1 /mnt/external_sd
 
-    # LGE_UPDATE_START, 2013/5/8, G2-FS@lge.com
-    wait /dev/block/platform/msm_sdcc.1/by-name/userdata
-    wait /dev/block/platform/msm_sdcc.1/by-name/cache
-    wait /dev/block/platform/msm_sdcc.1/by-name/drm
-    wait /dev/block/platform/msm_sdcc.1/by-name/sns
-    exec /sbin/setup_fs_static \
-        /dev/block/platform/msm_sdcc.1/by-name/userdata \
-        /dev/block/platform/msm_sdcc.1/by-name/cache \
-        /dev/block/platform/msm_sdcc.1/by-name/drm \
-        /dev/block/platform/msm_sdcc.1/by-name/sns \
-        no_reboot
-    # LGE_UPDATE_END
-
-# SD Enc
-    setprop ro.ssbd.session /dev/block/platform/msm_sdcc.1/by-name/eksst
-    setprop ro.ssbd.offset 0
-on fs
-
-# sreadahead daemon
 on post-fs
-	start sreadahead
-	# seandroid using auditd
+   export LD_PRELOAD /vendor/lib/libNimsWrap.so
 
-# LGE_CHANGE_S, [LGE_DATA][LGP_DATA_TCPIP_NSRM], heeyeon.nah@lge.com, 2012-05-22
-export LD_PRELOAD /vendor/lib/libNimsWrap.so
-# LGE_CHANGE_E, [LGE_DATA][LGP_DATA_TCPIP_NSRM], heeyeon.nah@lge.com, 2012-05-22
-# LGE_CHANGE_S
-# enable chargerlogo
 on chargerlogo
    stop bootlogo
    start charger
-#LGE_CHANGE_E
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -380,12 +354,6 @@ service usbhub_init /system/bin/usbhub_init
    disabled
    oneshot
 
-service qcomsysd /system/bin/qcom-system-daemon
-    class main
-
-on property:persist.radio.atfwd.start=false
-    stop atfwd
-
 # corefile limit and ETB enabling
 on property:persist.debug.trace=1
     mkdir /data/core 0777 root root
@@ -477,10 +445,6 @@ on property:vold.decrypt=trigger_restart_min_framework
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 660 root inet
-
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class main
     user root
@@ -493,53 +457,6 @@ service rmt_storage /system/bin/rmt_storage
 
 on property:ro.boot.emmc=true
     start rmt_storage
-
-service rfs_access /system/bin/rfs_access
-   class core
-   user system
-   group system net_raw
-
-on property:ro.boot.emmc=true
-    start rfs_access
-
-#LG_UPDATE_START :  move to init.zetaw.bt_qct.rc to seperate vendor's resource 20140108, [START]
-#on property:bluetooth.start_hci=true
-#    start start_hci_filter
-
-#on property:bluetooth.start_hci=false
-#    stop start_hci_filter
-
-#service start_hci_filter /system/bin/wcnss_filter
-#    class late_start
-#    user bluetooth
-#    group bluetooth
-#    disabled
-
-#service config_bluetooth /system/bin/sh /system/etc/init.zetaw.bt.sh "onboot"
-#    class core
-#    user root
-#    oneshot
-
-#service hciattach /system/bin/sh /system/etc/init.zetaw.bt.sh
-#    class late_start
-#    user bluetooth
-#    group bluetooth net_bt_admin
-#    disabled
-#    oneshot
-
-#on property:bluetooth.hciattach=true
-#    start hciattach
-
-#on property:bluetooth.hciattach=false
-#    setprop bluetooth.status off
-
-#service hciattach_ath3k /system/bin/sh /system/etc/init.ath3k.bt.sh
-#     class late_start
-#     user bluetooth
-#     group system bluetooth net_bt_admin misc
-#     disabled
-#     oneshot
-#LG_UPDATE_END :  move to init.zetaw.bt_qct.rc to seperate vendor's resource 20140108, [END]
 
 service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
     class late_start
@@ -775,19 +692,11 @@ service fm_dl /system/bin/sh /system/etc/init.zetaw.fm.sh
     disabled
     oneshot
 
-on property:crypto.driver.load=1
-     insmod /system/lib/modules/qce.ko
-     insmod /system/lib/modules/qcedev.ko
-
-on property:crypto.driver.load=0
-     exec /system/bin/rmmod qcedev.ko
-     exec /system/bin/rmmod qce.ko
-
 service drmdiag /system/bin/drmdiagapp
     class late_start
-     user root
-     disabled
-     oneshot
+    user root
+    disabled
+    oneshot
 
 on property:drmdiag.load=1
     start drmdiag
@@ -836,11 +745,6 @@ on property:init.svc.bootanim=stopped
     # Switch to ROW and balanced mode after boot for better UX
     setprop sys.perf.profile 1
     write /sys/block/mmcblk0/queue/scheduler row
-
-service atfwd /system/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
 
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class late_start
@@ -935,13 +839,6 @@ service lg_dm_dev_router /system/bin/lg_dm_dev_router
 
 on property:persist.service.lge.odl_on=true
      start lg_dm_dev_router
-on property:persist.service.lge.odl_on=false
-
-
-service ssr_diag /system/bin/ssr_diag
-    class late_start
-    user system
-    group system
 
 service ssr_setting /system/bin/sh /init.zetaw.ssr.sh
     class late_start
@@ -960,14 +857,6 @@ service wifi_ssr_setting /system/bin/sh /system/etc/init.zetaw.ssr.wifi.sh
 # SSR setting
 on property:persist.sys.ssr.restart_level=*
      start ssr_setting
-#    exec /system/bin/sh /init.zetaw.ssr.sh ${persist.sys.ssr.restart_level} ${ro.build.type}
-
-# [BEGIN][LGE_WIFI][QCT][neo-wifi@lge.com] add riva_ramdump service
-# WIFI SSR settings
-on property:persist.sys.ssr.restart_level_w=*
-     start wifi_ssr_setting
-#    exec /system/bin/sh /system/etc/init.zetaw.ssr.wifi.sh ${persist.sys.ssr.restart_level_w}
-# [END][LGE_WIFI][QCT][neo-wifi@lge.com] add riva_ramdump service
 
 # [BEGIN][LGE_WIFI][QCT][neo-wifi@lge.com] set SSR3 and rivadump enable depends on buildtype
 on property:ro.build.type=user
@@ -988,18 +877,6 @@ service fastmmisrv /system/bin/sh /init.zetaw.factory.sh
     user root
     disabled
     oneshot
-
-# sreadahead daemon
-service sreadahead /sbin/treadahead
-	oneshot
-	disabled
-
-# sreadahead daemon
-service sreadahead-check /sbin/sreadahead_check
-	class main
-	user root
-	group root
-	oneshot
 
 on ffbm
     start fastmmisrv
@@ -1036,22 +913,6 @@ on property:persist.sys.rootagent=0
 
 on property:ro.minios.enable=1
     start zetaw-post-boot
-
-# Factory, ATD
-service atd /system/bin/atd /dev/ttyGS0 /dev/smd0
-    socket atd stream 0660 system inet
-    class main
-
-# Factory, MTSD lg-msp@lge.com
-service mtsd /system/bin/mtsd
-    class late_start
-    oneshot
-    socket mtsd.port stream 660 system system
-
-on property:sys.mts.forcemts=1
-    start mtsd
-on property:sys.mts.forcemts=0
-    stop mtsd
 
 #touch firmware upgrade on hiddenmenu
 on property:sys.lge.touchfirmware.update=1
@@ -1154,7 +1015,6 @@ service ssr_dump /system/bin/subsystem_ramdump 1
     disabled
 
 on property:persist.service.ssr_dump.enable=1
-#    write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
     start ssr_dump
 on property:persist.service.ssr_dump.enable=0
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
@@ -1162,25 +1022,10 @@ on property:persist.service.ssr_dump.enable=0
 
 on property:persist.service.ssr_dump.ssr=1
     write /sys/devices/fc880000.qcom,mss/subsys1/restart_level RELATED
+
 on property:persist.service.ssr_dump.ssr=0
     write /sys/devices/fc880000.qcom,mss/subsys1/restart_level SYSTEM 
 
-# [BEGIN][LGE_WIFI][QCT][neo-wifi@lge.com] add riva_ramdump service
-on property:persist.service.rivadump.enable=1
-    write /sys/module/pil_pronto/parameters/enable_pronto_ramdump 1
-    start riva_ramdump
-on property:persist.service.rivadump.enable=0
-    write /sys/module/pil_pronto/parameters/enable_pronto_ramdump 0
-    stop riva_ramdump
-
-service riva_ramdump /system/bin/riva_ramdump
-    class late_start
-    user root
-    group system
-    disabled
-# [END][LGE_WIFI][QCT][neo-wifi@lge.com] add riva_ramdump service
-
-#LGE_CHANGE_S 2012.04 for MOCA
 service moca_service /system/bin/moca -s
     class late_start
     user root 
@@ -1207,34 +1052,11 @@ on property:persist.service.moca.enable=1
     start moca_service
     start moca_restart
 
-#service moca_service_disable /system/bin/moca -k
-#    class late_start
-#    user root
-#    group system sdcard_r sdcard_rw radio
-#    disabled
-#    oneshot
-
 on property:persist.service.moca.enable=0
     start moca_service_disable
-#LGE_CHANGE_E 2012.04 for MOCA
 
 on property:rild.modem_restart=silence
     write /sys/module/lge_handle_panic/parameters/gen_modem_panic 2
-
-# byungil.choi@lge.com for SW IrRC
-#service irrcServer /system/bin/irrcServer
-#   class main
-#   user media
-#   group media
-
-service ssbd /system/bin/ssbd
-    class main
-    socket ssbd stream 0660 root mount
-
-#LGE_CHANGE_S, 20131206 add AICL start routin
-#service charger_monitor /system/bin/charger_monitor
-#    user system
-#    group system
 
 on charger-monitor
     chown root system /sys/module/qpnp_charger/parameters/charger_monitor
