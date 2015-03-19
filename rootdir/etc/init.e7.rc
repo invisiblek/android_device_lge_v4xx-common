@@ -73,6 +73,10 @@ on boot
    chmod 664 /sys/devices/virtual/input/lge_touch/keyguard
    chown system system /sys/devices/virtual/input/lge_touch/keyguard
 
+   # MDP idle notifier
+   chown system graphics /sys/class/graphics/fb0/idle_time
+   chmod 0664 /sys/class/graphics/fb0/idle_time
+
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
