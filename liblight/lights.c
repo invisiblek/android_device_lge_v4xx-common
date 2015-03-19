@@ -37,15 +37,9 @@
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
-static struct light_state_t g_notification;
-static struct light_state_t g_battery;
-static struct light_state_t g_attention;
 
 char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
-
-char const*const PTN_BLINK_FILE
-        = "/sys/class/lg_rgb_led/use_patterns/blink_patterns";
 
 /**
  * device methods
@@ -129,99 +123,6 @@ set_light_backlight(struct light_device_t* dev,
     return err;
 }
 
-static int
-set_speaker_light_locked(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-
-    int len;
-    int onMS, offMS;
-    unsigned int colorRGB;
-    char blink_pattern[PAGE_SIZE];
-
-    if (state != NULL) {
-        switch (state->flashMode) {
-            case LIGHT_FLASH_TIMED:
-                onMS = state->flashOnMS;
-                offMS = state->flashOffMS;
-                break;
-            case LIGHT_FLASH_NONE:
-            default:
-                onMS = -1;
-                offMS = -1;
-                break;
-        }
-
-        colorRGB = state->color;
-
-        sprintf(blink_pattern,"0x%x,%d,%d",colorRGB,onMS,offMS);
-        write_str(PTN_BLINK_FILE, blink_pattern);
-    }
-
-    return 0;
-}
-
-static void
-handle_led_prioritized_locked(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    if (is_lit(&g_attention)) {
-        set_speaker_light_locked(dev, &g_attention);
-    } else if (is_lit(&g_notification)) {
-        set_speaker_light_locked(dev, &g_notification);
-    } else if(is_lit(&g_battery)) {
-        set_speaker_light_locked(dev, &g_battery);
-    } else {
-        set_speaker_light_locked(dev, &g_notification);
-    }
-
-}
-
-static int
-set_light_battery(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    pthread_mutex_lock(&g_lock);
-    g_battery = *state;
-    handle_led_prioritized_locked(dev, state);
-    pthread_mutex_unlock(&g_lock);
-    return 0;
-}
-
-static int set_light_notifications(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    pthread_mutex_lock(&g_lock);
-    g_notification = *state;
-    handle_led_prioritized_locked(dev, state);
-    pthread_mutex_unlock(&g_lock);
-    return 0;
-}
-
-static int
-set_light_attention(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    int brightness = 0;
-
-    pthread_mutex_lock(&g_lock);
-    g_attention = *state;
-
-    // PowerManagerService::setAttentionLightInternal turns off the attention
-    // light by setting flashOnMS = flashOffMS = 0
-    if (g_attention.flashOnMS == 0 && g_attention.flashOffMS == 0) {
-        g_attention.color = 0;
-    }
-    brightness = rgb_to_brightness(&g_attention);
-
-    handle_led_prioritized_locked(dev, state);
-
-    /* Do the back-button lights, too */
-    pthread_mutex_unlock(&g_lock);
-    return 0;
-}
-
-
 /** Close the lights device */
 static int
 close_lights(struct light_device_t *dev)
@@ -249,12 +150,6 @@ open_lights(const struct hw_module_t* module, char const* name,
 
     if (0 == strcmp(LIGHT_ID_BACKLIGHT, name))
         set_light = set_light_backlight;
-    else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name))
-        set_light = set_light_notifications;
-    else if (0 == strcmp(LIGHT_ID_BATTERY, name))
-        set_light = set_light_battery;
-    else if (0 == strcmp(LIGHT_ID_ATTENTION, name))
-        set_light = set_light_attention;
     else
         return -EINVAL;
 
