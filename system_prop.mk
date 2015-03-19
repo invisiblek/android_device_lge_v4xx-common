@@ -27,6 +27,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     use.voice.path.for.pcm.voip=true
 
+# CNE
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.cne.feature=1
+
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.composition.type=c2d \
