@@ -191,7 +191,6 @@ PRODUCT_PACKAGES += \
     init.lge.rc \
     init.zetaw.bt_vendor.rc \
     init.zetaw.class_core.sh \
-    init.zetaw.early_boot.sh \
     init.zetaw-sensor.sh \
     init.zetaw.rc \
     init.zetaw.sh \

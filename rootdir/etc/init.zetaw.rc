@@ -75,7 +75,6 @@ on early-boot
     # Allow subsystem (modem etc) debugging
     write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
     write /sys/kernel/boot_adsp/boot 1
-    exec /system/bin/sh /init.zetaw.early_boot.sh ${ro.board.platform}
     # disable lmk_fast_run
     write /sys/module/lowmemorykiller/parameters/lmk_fast_run 0
 
