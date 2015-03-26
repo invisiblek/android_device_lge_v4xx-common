@@ -34,6 +34,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.composition.type=c2d \
+    debug.sf.hw=1 \
     persist.hwc.mdpcomp.enable=true \
     ro.opengles.version=196608 \
     ro.sf.lcd_density=213
