@@ -92,7 +92,7 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Logging
-TARGET_USES_LOGD=false
+TARGET_USES_LOGD := false
 
 # Malloc
 MALLOC_IMPL := dlmalloc
