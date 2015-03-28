@@ -43,6 +43,13 @@ on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
 
+    chown system system /sys/class/timed_output/vibrator/vtg_level
+    chown system system /sys/class/timed_output/vibrator/vtg_max
+    chown system system /sys/class/timed_output/vibrator/vtg_min
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_level
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_max
+    chmod 0644 /sys/class/timed_output/vibrator/vtg_min
+
     setprop vold.post_fs_data_done 1
 
 on early-boot

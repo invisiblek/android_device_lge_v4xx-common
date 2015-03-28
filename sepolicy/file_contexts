@@ -10,3 +10,5 @@
 
 /persist/sensors/sensors_settings                 u:object_r:sensors_persist_file:s0
 /sns(/.*)?                                        u:object_r:sensors_persist_file:s0
+
+/sys/devices/virtual/timed_output/vibrator/vtg_level     u:object_r:vibeamp_sysfs:s0
