@@ -64,6 +64,7 @@ COMMON_GLOBAL_CFLAGS += -DPROPERTY_PERMS_APPEND=' \
     { "camera.4k2k.enable", AID_MEDIA, 0 }, \
     { "persist.data.rear.minfps", AID_MEDIA, 0 }, \
     { "persist.data.front.minfps", AID_MEDIA, 0 }, \
+    { "persist.data.rear.minfps", AID_MEDIA, 0 }, \
     '
 
 # CMHW
@@ -130,6 +131,9 @@ BOARD_SEPOLICY_UNION += \
   file.te \
   init_shell.te \
   mpdecision.te \
+  mediaserver.te \
+  property.te \
+  property_contexts \
   rmt_storage.te \
   sensors.te \
   thermal-engine.te \
