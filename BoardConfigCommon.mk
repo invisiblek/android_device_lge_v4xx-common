@@ -136,6 +136,7 @@ BOARD_SEPOLICY_UNION += \
   rmt_storage.te \
   sensors.te \
   system_server.te \
+  tee.te \
   thermal-engine.te \
   vold.te \
   wcnss_service.te
