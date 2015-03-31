@@ -24,8 +24,6 @@ on fs
     # Enable zRAM
     swapon_all /fstab.e7
 
-    setprop ro.crypto.fuse_sdcard true
-
     # Executing tune2fs to reserve some region in /data. (40MB)
     exec /system/bin/tune2fs -u system -r 10240 /dev/block/platform/msm_sdcc.1/by-name/userdata
 
