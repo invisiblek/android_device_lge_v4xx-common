@@ -27,18 +27,6 @@ $(foreach f,$(1),$(shell echo $(f) | \
     awk 'BEGIN { FS="."; } { printf("%s.%s", substr($$1,1,8), $$2); }'))
 endef
 
-WIDEVINE_IMAGES := \
-    widevine.b00 widevine.b01 widevine.b02 widevine.b03 widevine.mdt
-
-WIDEVINE_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(WIDEVINE_IMAGES))
-$(WIDEVINE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "widevine firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /persist-lg/firmware/$(call vfatfilename,$(notdir $@)) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(WIDEVINE_SYMLINKS)
-
 # Create a link for the WCNSS config file, which ends up as a writable
 # version in /data/misc/wifi
 $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
