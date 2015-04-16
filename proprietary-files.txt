@@ -203,10 +203,12 @@ bin/ims_rtp_daemon
 bin/netmgrd
 bin/qmiproxy
 bin/qmuxd
-bin/rild
 bin/rmt_storage
+lib/libcnefeatureconfig.so
 lib/liblgderp.so
+lib/libmdmdetect.so
 lib/libril.so
+lib/libuicc.so
 lib/libvss_common_core.so
 lib/libvss_common_idl.so
 lib/libvss_common_iface.so
@@ -219,6 +221,7 @@ vendor/lib/lib-rtpcommon.so
 vendor/lib/lib-rtpcore.so
 vendor/lib/lib-rtpdaemoninterface.so
 vendor/lib/lib-rtpsl.so
+vendor/lib/libcneapiclient.so
 vendor/lib/libconfigdb.so
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
@@ -227,6 +230,7 @@ vendor/lib/libdsucsd.so
 vendor/lib/libdsutils.so
 vendor/lib/libidl.so
 vendor/lib/libnetmgr.so
+vendor/lib/libperipheral_client.so
 vendor/lib/libqcci_legacy.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
@@ -240,3 +244,6 @@ vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qcril-hook-oem.so
+vendor/lib/libsmemlog.so
+vendor/lib/libsystem_health_mon.so
+vendor/lib/libxml.so
