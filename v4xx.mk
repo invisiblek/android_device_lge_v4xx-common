@@ -186,7 +186,6 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.e7 \
-    init.class_main.sh \
     init.e7.rc \
     init.lge.rc \
     init.zetaw.bt_vendor.rc \
