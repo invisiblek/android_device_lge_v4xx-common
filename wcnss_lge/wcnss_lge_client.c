@@ -47,7 +47,7 @@ int wcnss_qmi_get_wlan_address(unsigned char *pBdAddr)
         return FAILED;
     }
 
-    fseek(fd, 0x4000, SEEK_SET);
+    fseek(fd, 0x3000, SEEK_SET);
 
     ret = fread(pBdAddr, sizeof(pBdAddr[0]), 6, fd);
 
