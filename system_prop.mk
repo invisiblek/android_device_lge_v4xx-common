@@ -1,5 +1,9 @@
 # WARNING - much of this is a straight kang from g3-common
 
+# Art
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-flags=--no-watch-dog
+
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.24bit.enable=true \
