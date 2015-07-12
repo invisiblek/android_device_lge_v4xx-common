@@ -737,9 +737,9 @@ on property:init.svc.bootanim=running
     write /sys/block/mmcblk0/queue/scheduler noop
 
 on property:init.svc.bootanim=stopped
-    # Switch to ROW and balanced mode after boot for better UX
+    # Switch to fiops and balanced mode after boot for better UX
     setprop sys.perf.profile 1
-    write /sys/block/mmcblk0/queue/scheduler row
+    write /sys/block/mmcblk0/queue/scheduler fiops
 
 service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
     class late_start
