@@ -61,6 +61,10 @@ TARGET_SCREEN_WIDTH := 800
 
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 
+# Art
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false
+
 # Audio
 PRODUCT_COPY_FILES += \
     device/lge/v4xx-common/configs/mixer_paths.xml:system/etc/mixer_paths.xml
