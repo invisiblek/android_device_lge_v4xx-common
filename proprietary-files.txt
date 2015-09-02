@@ -203,6 +203,7 @@ bin/ims_rtp_daemon
 bin/netmgrd
 bin/qmiproxy
 bin/qmuxd
+bin/radish
 bin/rmt_storage
 lib/libcnefeatureconfig.so
 lib/libmdmdetect.so
