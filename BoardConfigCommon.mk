@@ -67,10 +67,10 @@ COMMON_GLOBAL_CFLAGS += -DPROPERTY_PERMS_APPEND=' \
     '
 
 # CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
+OARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += \
     $(LOCAL_PATH)/cmhw \
-    hardware/cyanogen/cmhw
+    harcware/cyanogen/cmhw
 
 # Display
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
