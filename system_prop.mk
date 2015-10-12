@@ -74,7 +74,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.qualcomm.sns.hal=e \
     debug.qualcomm.sns.libsensor1=e \
     ro.qc.sdk.sensors.gestures=false
-
-# USB
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.isUsbOtgEnabled=true
