@@ -51,6 +51,7 @@ TARGET_KERNEL_SOURCE := kernel/lge/v4xx
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
+USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
