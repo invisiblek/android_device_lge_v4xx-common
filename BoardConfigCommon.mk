@@ -20,6 +20,7 @@ LOCAL_PATH := device/lge/v4xx-common
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8226
+USE_CLANG_PLATFORM_BUILD := true
 
 # CPU
 TARGET_ARCH := arm
