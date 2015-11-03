@@ -91,6 +91,10 @@ PRODUCT_PACKAGES += \
     init.zetaw.bt_vendor.rc \
     bdAddrLoader
 
+# BoringSSL compatability wrapper
+PRODUCT_PACKAGES += \
+    libboringssl-compat
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8226
