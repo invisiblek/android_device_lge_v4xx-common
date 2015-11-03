@@ -79,6 +79,10 @@ on boot
    chown system graphics /sys/class/graphics/fb0/idle_time
    chmod 0664 /sys/class/graphics/fb0/idle_time
 
+   # Adaptive LMK
+   write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+   write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 53059
+
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
