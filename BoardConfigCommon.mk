@@ -94,9 +94,6 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Malloc
-MALLOC_IMPL := dlmalloc
-
 # Offmode Charging
 COMMON_GLOBAL_CFLAGS += \
     -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' \
