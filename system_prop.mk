@@ -60,6 +60,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Qualcomm
 PRODUCT_PROPERTY_OVERRIDES += \
+    persist.data.qmi.adb_logmask=0 \
     persist.timed.enable=true \
     ro.qualcomm.cabl=0 \
     ro.vendor.extension_library=/vendor/lib/libqc-opt.so
