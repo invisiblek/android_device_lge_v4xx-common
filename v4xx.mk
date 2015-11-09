@@ -191,6 +191,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     power.msm8226
 
+# Qualcomm
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.e7 \

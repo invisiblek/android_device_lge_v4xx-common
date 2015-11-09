@@ -204,7 +204,6 @@ bin/qmiproxy
 bin/qmuxd
 bin/radish
 bin/rmt_storage
-lib/libcnefeatureconfig.so
 lib/libmdmdetect.so
 lib/libril.so
 lib/libuicc.so
