@@ -41,6 +41,7 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
 on early-boot
+    start timekeep
 
 on boot
    chown media media /sys/bus/platform/devices/cam_sensor_vt/antibanding
@@ -94,10 +95,12 @@ on property:init.svc.media=restarting
 on property:init.svc.servicemanager=restarting
     restart qcamerasvr
 
-service time_daemon /system/bin/time_daemon
-   class late_start
+service timekeep /system/bin/timekeep restore
    user root
    group root
+   disabled
+   oneshot
+   seclabel u:r:timekeep:s0
 
 service mpdecision /system/bin/mpdecision --avg_comp
    class late_start

@@ -19,3 +19,4 @@
 /sys/devices/virtual/timed_output/vibrator/vtg_level     u:object_r:vibeamp_sysfs:s0
 
 /system/bin/thermal-engine                        u:object_r:thermal-engine_exec:s0
+/system/bin/timekeep                              u:object_r:timekeep_exec:s0
