@@ -16,6 +16,8 @@
 /sns(/.*)?                                        u:object_r:sensors_persist_file:s0
 
 /sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/gpuclk u:object_r:sysfs_thermal:s0
+/sys/devices/qpnp-rtc-[^/]+/rtc/rtc0(/.*)?        u:object_r:rtc_sysfs:s0
 /sys/devices/virtual/timed_output/vibrator/vtg_level     u:object_r:vibeamp_sysfs:s0
 
 /system/bin/thermal-engine                        u:object_r:thermal-engine_exec:s0
+/system/bin/timekeep                              u:object_r:timekeep_exec:s0
