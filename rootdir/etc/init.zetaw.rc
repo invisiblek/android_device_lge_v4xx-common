@@ -177,6 +177,8 @@ on boot
     chown media media /dev/msm_IRRC_pcm_dec
     chmod 0660 /dev/msm_IRRC_pcm_dec
 
+    trigger enable-low-power
+
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/footprint 0750 root log
@@ -692,9 +694,8 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    oneshot
 
 
-on property:init.svc.bootanim=stopped
+on enable-low-power
     start zetaw-post-boot
-    stop mpdecision
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
@@ -719,7 +720,6 @@ on property:init.svc.bootanim=stopped
     write /sys/devices/system/cpu/cpufreq/interactive/up_threshold_any_cpu_freq 998400
 
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
-    start mpdecision
 
     setprop sys.io.scheduler bfq
 
