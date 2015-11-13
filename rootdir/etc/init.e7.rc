@@ -24,9 +24,6 @@ on fs
     # Enable zRAM
     swapon_all /fstab.e7
 
-    # Executing tune2fs to reserve some region in /data. (40MB)
-    exec /system/bin/tune2fs -u system -r 10240 /dev/block/platform/msm_sdcc.1/by-name/userdata
-
     # In order to keep plenty of large order chunks.
     write /proc/sys/vm/min_free_kbytes 5120
 
