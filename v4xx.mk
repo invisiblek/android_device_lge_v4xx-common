@@ -166,8 +166,7 @@ PRODUCT_COPY_FILES += \
 
 # Offmode Charging
 PRODUCT_PACKAGES += \
-    charger_res_v4xx \
-    charger_v4xx
+    charger_res_images
 
 # OMX
 PRODUCT_PACKAGES += \
