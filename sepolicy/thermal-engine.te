@@ -1,2 +1,4 @@
+type_transition thermal-engine socket_device:sock_file thermal_socket;
+
 allow thermal-engine sysfs_battery_supply:dir search;
 allow thermal-engine sysfs_battery_supply:file r_file_perms;
