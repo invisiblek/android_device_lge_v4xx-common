@@ -1,3 +1,4 @@
 allow mediaserver media_prop:property_service set;
 allow mediaserver persist_drm_file:dir search;
 allow mediaserver persist_drm_file:file r_file_perms;
+allow mediaserver system_file:file execmod;
