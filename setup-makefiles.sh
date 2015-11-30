@@ -159,7 +159,6 @@ done
 #    shutdownlistener \\
 #    qcnvitems \\
 #    qcrilhook \\
-#    libHevcSwDecoder \\
 #    libtime_genoff
 
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)

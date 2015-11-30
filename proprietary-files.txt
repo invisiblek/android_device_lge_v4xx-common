@@ -152,7 +152,6 @@ vendor/lib/libllvm-qcom.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/libsc-a3xx.so
-vendor/lib/libscale.so
 
 # IRDA
 bin/irrcServer
@@ -163,16 +162,6 @@ lib/liblgewg.so
 
 # Media
 vendor/lib/libmmipstreamaal.so
-vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxAmrwbplusDec.so
-vendor/lib/libOmxEvrcDec.so
-vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libOmxWmaDec.so
-
-# Postprocessing
-bin/mm-pp-daemon
-vendor/lib/libmm-abl-oem.so
-vendor/lib/libmm-abl.so
 
 # Perf
 bin/mpdecision
