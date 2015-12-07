@@ -108,9 +108,12 @@ vendor/firmware/widevine.b02
 vendor/firmware/widevine.b03
 vendor/firmware/widevine.mdt
 vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/libDivxDrm.so
+vendor/lib/libSHIMDivxDrm.so
 vendor/lib/libWVphoneAPI.so
 vendor/lib/libWVStreamControlAPI_L1.so
 vendor/lib/libdrmdecrypt.so
+vendor/lib/libmmosal.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
 vendor/lib/mediadrm/libdrmclearkeyplugin.so
