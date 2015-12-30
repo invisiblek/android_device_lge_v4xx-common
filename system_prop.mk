@@ -65,10 +65,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.cabl=0 \
     ro.vendor.extension_library=/vendor/lib/libqc-opt.so
 
-# Recovery
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cwm.forbid_format=/boot,/firmware,/mpt,/persist,/persist-lg,/sns
-
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.qualcomm.sns.daemon=e \
