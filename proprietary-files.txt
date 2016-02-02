@@ -98,7 +98,6 @@ lib/drm/libfwdlockengine.so
 lib/libdrmdiag.so
 lib/libdrmfs.so
 lib/libdrmtime.so
-lib/liboemcrypto.so
 lib/libQSEEComAPI.so
 lib/librpmb.so
 lib/libssd.so
