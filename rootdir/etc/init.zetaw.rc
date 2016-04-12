@@ -40,8 +40,6 @@ on init
     mkdir /persist-lg/lgdata 0771 radio radio
     mkdir /sns 0775 system system
 
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
 on chargerlogo
