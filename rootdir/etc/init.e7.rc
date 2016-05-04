@@ -57,6 +57,8 @@ on boot
    chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
    chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
    chown system radio /sys/devices/virtual/input/lge_touch/lpwg_notify
+   chmod 664 /sys/devices/virtual/input/lge_touch/tap_to_wake
+   chown system radio /sys/devices/virtual/input/lge_touch/tap_to_wake
    chmod 664 /sys/devices/virtual/input/lge_touch/incoming_call
    chown system system /sys/devices/virtual/input/lge_touch/incoming_call
    chmod 664 /sys/devices/virtual/input/lge_touch/lockscreen

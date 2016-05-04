@@ -70,7 +70,7 @@ COMMON_GLOBAL_CFLAGS += -DPROPERTY_PERMS_APPEND=' \
 
 # CMHW
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
-TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/lge_touch/lpwg_notify"
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/lge_touch/tap_to_wake"
 
 # Display
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
