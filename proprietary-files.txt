@@ -155,6 +155,7 @@ vendor/lib/libllvm-qcom.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/libsc-a3xx.so
+vendor/lib/libuiblur.so
 
 # IRDA
 bin/irrcServer
