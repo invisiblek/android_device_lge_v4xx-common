@@ -198,7 +198,6 @@ bin/qmuxd
 bin/radish
 bin/rmt_storage
 lib/libmdmdetect.so
-lib/librmnetctl.so
 lib/libuicc.so
 lib/libvss_common_core.so
 lib/libvss_common_idl.so
