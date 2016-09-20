@@ -433,7 +433,7 @@ service bt-sap /system/bin/sapd 15
 service ftmd /system/bin/ftmdaemon
     class late_start
     user root
-    group bluetooth net_bt_admin misc net_bt_stack qcom_diag
+    group bluetooth net_bt_admin misc bluetooth qcom_diag
     disabled
     oneshot
 
@@ -884,7 +884,7 @@ on property:hw.ftm_ptt_start=0
 # LG_BTUI : BDADDR_LOADER [s]
 service bdaddr_loader /system/bin/bdaddr_loader
     user root
-    group bluetooth net_bt_admin misc net_bt_stack
+    group bluetooth net_bt_admin misc bluetooth
     disabled
     oneshot
 # LG_BTUI : BDADDR_LOADER [e]
