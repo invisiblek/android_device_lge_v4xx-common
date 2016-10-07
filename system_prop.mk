@@ -29,6 +29,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     qcom.bluetooth.soc=smd
 
+# Camera
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.legacyencoder=true \
+    media.stagefright.less-secure=true
+
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.feature=1
