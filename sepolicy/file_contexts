@@ -15,6 +15,7 @@
 /persist-lg(/.*)?                                 u:object_r:persist_drm_file:s0
 /sns(/.*)?                                        u:object_r:sensors_persist_file:s0
 
+/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/gpuclk u:object_r:sysfs_thermal:s0
 /sys/devices/virtual/timed_output/vibrator/vtg_level     u:object_r:vibeamp_sysfs:s0
 
 /system/bin/thermal-engine                        u:object_r:thermal-engine_exec:s0
