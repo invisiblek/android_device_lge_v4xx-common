@@ -134,9 +134,6 @@
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
 
-    <!-- enable doze powersaving mode -->
-    <bool name="config_enableAutoPowerModes">true</bool>
-
     <!-- Flag indicating whether the current device is "voice capable".
          If true, this means that the device supports circuit-switched
          (i.e. voice) phone calls over the telephony network, and is
