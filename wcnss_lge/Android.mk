@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq ($(filter v400 v410,$(TARGET_DEVICE)),)
+ifneq ($(filter v400 v410 v480,$(TARGET_DEVICE)),)
 
 LOCAL_PATH:= $(call my-dir)
 

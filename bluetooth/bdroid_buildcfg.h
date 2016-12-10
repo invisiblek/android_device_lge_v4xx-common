@@ -19,7 +19,7 @@
 
 #define BLUETOOTH_QTI_SW TRUE
 
-#define BTM_DEF_LOCAL_NAME   "LG G Pad 7"
+#define BTM_DEF_LOCAL_NAME   "LG G Pad"
 // Disables read remote device feature
 #define BTA_SKIP_BLE_READ_REMOTE_FEAT TRUE
 #define MAX_L2CAP_CHANNELS    14
