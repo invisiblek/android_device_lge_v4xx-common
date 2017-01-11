@@ -82,7 +82,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.qualcomm.sns.hal=e \
     debug.qualcomm.sns.libsensor1=e \
     ro.qc.sdk.sensors.gestures=false
-
-# Storage
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
