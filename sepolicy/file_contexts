@@ -4,7 +4,7 @@
 /data/system/default_values                       u:object_r:mpctl_data_file:s0
 
 /dev/block/platform/msm_sdcc\.1/by-name/drm       u:object_r:drm_block_device:s0
-/dev/block/platform/msm_sdcc\.1/by-name/encrypt   u:object_r:encrypt_block_device:s0
+/dev/block/platform/msm_sdcc\.1/by-name/encrypt   u:object_r:metadata_block_device:s0
 /dev/block/platform/msm_sdcc\.1/by-name/modem     u:object_r:modem_block_device:s0
 /dev/block/platform/msm_sdcc\.1/by-name/persist   u:object_r:persist_block_device:s0
 /dev/block/platform/msm_sdcc\.1/by-name/sns       u:object_r:sns_block_device:s0
