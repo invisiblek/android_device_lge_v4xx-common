@@ -192,6 +192,8 @@ bin/qmiproxy
 bin/qmuxd
 bin/radish
 bin/rmt_storage
+etc/data/dsi_config.xml
+etc/data/netmgr_config.xml
 lib/libmdmdetect.so
 lib/libuicc.so
 lib/libvss_common_core.so
@@ -222,6 +224,7 @@ vendor/lib/libqdi.so
 vendor/lib/libqdp.so
 vendor/lib/libqmi.so
 vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_client_helper.so
 vendor/lib/libqmi_client_qmux.so
 vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
