@@ -35,6 +35,28 @@
 
 #define UNUSED __attribute__((unused))
 
+static const char AUDIO_ZOOM_OFF[] = "audio-zoom";
+static const char AUDIO_ZOOM_ON[] = "audio-zoom";
+static const char BEAUTY_SHOT_OFF[] = "beauty-shot";
+static const char BEAUTY_SHOT_ON[] = "beauty-shot";
+static const char BURST_SHOT_OFF[] = "burst-shot";
+static const char BURST_SHOT_ON[] = "burst-shot";
+static const char KEY_AUDIO_ZOOM[] = "audio-zoom";
+static const char KEY_AUDIO_ZOOM_SUPPORTED[] = "audio-zoom-supported";
+static const char KEY_BEAUTY_SHOT[] = "beauty-shot";
+static const char KEY_BEAUTY_SHOT_SUPPORTED[] = "beauty-shot-supported";
+static const char KEY_BURST_SHOT[] = "burst-shot";
+static const char KEY_BURST_SHOT_SUPPORTED[] = "burst-shot-supported";
+static const char KEY_FOCUS_MODE_OBJECT_TRACKING[] = "object-tracking";
+static const char KEY_FOCUS_MODE_OBJECT_TRACKING_SUPPORTED[] = "object-tracking-supported";
+static const char KEY_LGE_CAMERA[] = "lge-camera";
+static const char KEY_VIDEO_WDR[] = "video-wdr";
+static const char KEY_VIDEO_WDR_SUPPORTED[] = "video-wdr-supported";
+static const char VIDEO_WDR_OFF[] = "video-wdr";
+static const char VIDEO_WDR_ON[] = "video-wdr";
+static const char OBJECT_TRACKING_ON[] = "object-tracking";
+static const char OBJECT_TRACKING_OFF[] = "object-tracking";
+
 static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
 
