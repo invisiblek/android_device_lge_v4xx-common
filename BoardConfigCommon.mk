@@ -72,6 +72,7 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/lge_touch/tap_to_wake"
 
 # Display
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+SF_START_GRAPHICS_ALLOCATOR_SERVICE := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
@@ -85,6 +86,9 @@ TARGET_USE_COMPAT_GRALLOC_PERFORM := true
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
+
+# HIDL
+DEVICE_MANIFEST_FILE := device/lge/v4xx-common/configs/manifest.xml
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
