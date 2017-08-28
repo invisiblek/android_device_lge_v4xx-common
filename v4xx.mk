@@ -95,7 +95,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     init.zetaw.bt_vendor.rc \
-    bdAddrLoader
+    bdAddrLoader \
+    libbt-vendor
 
 # BoringSSL compatability wrapper
 PRODUCT_PACKAGES += \
